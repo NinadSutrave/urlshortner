@@ -14,6 +14,11 @@ const UrlSchema = new Schema({
     shortUrl: {
         type: String,
         required: true,
+    },
+    clicks: {
+        type: Number,
+        required: true,
+        default: 0
     }
 })
 

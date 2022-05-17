@@ -4,8 +4,9 @@ import shorten from '../controller/shorten.js'
 
 const router = express.Router()
 
+router.post('/shortenUrl', shorten)
 router.get('/test', (req,res) => {res.send('Hello')})
 router.get('/:code', redirect)
-router.post('/shortenUrl', shorten)
+
 
 export default router

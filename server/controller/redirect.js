@@ -11,8 +11,17 @@ const redirect = async (req,res) => {
 
     try {
         const url = await Url.findOne({ code })
+        console.log(code)
 
         if(url.longUrl) {
+
+            await Url.updateOne(
+                {code: url.code}, 
+                {
+                    $set: { clicks: url.clicks + 1 }
+                }
+            )
+
             return res.redirect(url.longUrl)
         }
 
