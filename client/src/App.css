@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Agrandir';
-  src: local('Angrandir Text Bold 700'), url(./assets/Agrandir.otf) format('otf');
+  src: local('Angrandir'), url(./assets/Agrandir.otf) format('opentype');
 }
 
 * {
@@ -9,6 +9,7 @@
   box-sizing: border-box;
   word-wrap: break-word;
   font-family: Agrandir;
+  color: #000732;
 }
 
 .App {
@@ -22,6 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 2px 2px 6px #000732;
 }
 
 .logo {
@@ -33,15 +35,79 @@
   background: #FFFFFF;
   height: 100vh;
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.parameter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.shortUrl, h2 {
+  resize: none;
+  width: 40%;
+  margin-left: 20px;
+  padding-left: 10px;
+  
+}
+
+.upper, .lower {
+  width: 100%;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+}
+
+h6 {
+  text-decoration: underline;
+}
+
+h6:hover {
+  cursor: pointer;
 }
 
 li {
   display: block;
-  background: url(./assets/check2-circle.svg) no-repeat;
-  background-position: left;
+  background: url(./assets/check-circle.svg) no-repeat;
+  background-position: top left;
   padding-left: 44px;
-  margin: 15px 0 15px 0;
+  margin: 25px 0 25px 0;
   font-size: 20px;
+}
 
+.input {
+  width: 50%;
+  height: 30px;
+  outline: none;
+  padding-left: 10px;
+  margin-right: 10px;
+}
 
+.submit {
+  width: 20%;
+  height: 30px;
+  background: #000732;
+  color: #FFFFFF;
+  outline: none;
+  border: 0px;
+  margin-left: 10px;
+  transition: 0.2s ease-in-out;
+  box-shadow: 2px 2px 6px #000732;
+}
+
+.submit:hover {
+  cursor: pointer;
+  background: #A9DCE3;
+  color: #000732;
 }

@@ -4,8 +4,6 @@ import Url from '../models/url.js'
 
 const shorten = async (req,res) => {
 
-    console.log(req.body)
-
     if(!req.body) {
         return res.status(404).json({"message": "No url found"})
     }  
@@ -19,6 +17,8 @@ const shorten = async (req,res) => {
 
     try {
 
+        console.log('yo')
+
         const url = await Url.findOne({longUrl})
 
         if(url) {
@@ -27,7 +27,7 @@ const shorten = async (req,res) => {
 
         const code = shortid.generate()
         const baseUrl = process.env.BASE_URL
-        const shortUrl = baseUrl + code
+        const shortUrl = baseUrl + '/' + code
         const clicks = 0
 
         const urlData = new Url({
@@ -38,7 +38,7 @@ const shorten = async (req,res) => {
         })
 
         await urlData.save()
-        res.json(urlData)
+        res.json({"shortUrl": shortUrl})
     }
     catch (err) {
         
