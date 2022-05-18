@@ -41,11 +41,16 @@
   align-items: center;
 }
 
+.header {
+  margin-bottom: 3rem;
+}
+
 .parameter {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-bottom: 2rem;
 }
 
 .shortUrl, h2 {
@@ -58,15 +63,13 @@
 
 .upper, .lower {
   width: 100%;
-  margin-bottom: 3rem;
   text-align: center;
 }
 
 form {
   display: flex;
   justify-content: center;
-  margin-top: 5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 h6 {
@@ -79,7 +82,8 @@ h6:hover {
 
 li {
   display: block;
-  background: url(./assets/check-circle.svg) no-repeat;
+  background: url(./assets/bullet.png) no-repeat;
+  background-size: 20px;
   background-position: top left;
   padding-left: 44px;
   margin: 25px 0 25px 0;
@@ -92,6 +96,7 @@ li {
   outline: none;
   padding-left: 10px;
   margin-right: 10px;
+  
 }
 
 .submit {
@@ -110,4 +115,17 @@ li {
   cursor: pointer;
   background: #A9DCE3;
   color: #000732;
+}
+
+.clipboard {
+  margin-left: 5px;
+}
+
+.copy {
+  width: 15px;
+  margin-bottom: -4px;
+}
+
+.copy:hover {
+  cursor: pointer;
 }

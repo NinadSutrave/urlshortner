@@ -1,23 +1,38 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import './App.css';
 
 const App = () => {
 
   const [clicks, setClicks] = useState();
   const [shortUrl, setShortUrl] = useState();
+  const [longInput, setLongInput] = useState();
+  const [shortInput, setShortInput] = useState();
 
   const handleShorten = (e) => {
-
     e.preventDefault()    
-    setShortUrl('http://localhost:5000/O8mL4XH_K')
 
+    axios.post('http://localhost:5000/shortenUrl', {"longUrl": longInput})
+      .then(res => setShortUrl(res.data.shortUrl))
+      .catch(err => console.log(err.response.data.message))
+      .catch(err => console.log(err.message))
   }
 
   const handleClick = (e) => {
-
     e.preventDefault()
-    setClicks(5)
+    console.log(shortInput)
+    axios.post('http://localhost:5000/clicks', {"shortUrl": shortInput})
+      .then(res => setClicks(res.data.clicks))
+      .catch(err => console.log(err.response.data.message))
+      .catch(err => console.log(err.message))
+  }
 
+  const updateLongInput = (e) => {
+    setLongInput(e.target.value)
+  }
+
+  const updateShortInput = (e) => {
+    setShortInput(e.target.value)
   }
 
   return (
@@ -41,7 +56,7 @@ const App = () => {
 
         <div className="upper">
 
-          <h1>
+          <h1 className="header">
             Free URL Shortner Service
           </h1> 
         <form>
@@ -49,7 +64,8 @@ const App = () => {
             className="input" 
             type="text" 
             id="longurl"
-            autocomplete="off"
+            autoComplete="off"
+            onChange = {updateLongInput}
           />
           <input 
             className="submit" 
@@ -68,9 +84,12 @@ const App = () => {
           className="shortUrl"
           type="text"
           id="shortUrl"
-          autocomplete="off"
+          autoComplete="off"
           value={shortUrl}
         />
+        <button className="clipboard">
+          <img className="copy" alt="copy-icon" src={require("./assets/copy.png")} />
+        </button>
         </div>
 
         <div className="lower">
@@ -79,7 +98,8 @@ const App = () => {
             className="input" 
             type="text" 
             id="longurl"
-            autocomplete="off"
+            autoComplete="off"
+            onChange = {updateShortInput}
           />
           <input 
             className="submit" 

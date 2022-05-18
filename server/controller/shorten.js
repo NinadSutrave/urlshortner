@@ -22,7 +22,7 @@ const shorten = async (req,res) => {
         const url = await Url.findOne({longUrl})
 
         if(url) {
-            return res.json(url)
+            return res.json({"shortUrl": url.shortUrl})
         }
 
         const code = shortid.generate()

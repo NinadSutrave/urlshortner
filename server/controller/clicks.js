@@ -6,9 +6,10 @@ const getClicks = async (req,res) => {
     if(!req.body) {
         return res.status(404).json({"message": "No url found"})
     }  
-
+    
+    console.log(req.body)
     const {shortUrl} = req.body
-    console.log(shortUrl)
+    
 
     if(!validUrl.isUri(shortUrl)) {
         return res.status(400).json({"message": "Invalid url"})
