@@ -1,0 +1,27 @@
+.Header {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 2rem 0 4rem;
+}
+
+.Header div {
+    width: 50%;
+}
+
+.title {
+    color: var(--blue);
+    font-size: 1.8rem;   
+    padding-top: 1rem;    
+}
+
+@media screen and (max-width: 580px) {
+
+    .Header {
+        padding-left: 1rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+}

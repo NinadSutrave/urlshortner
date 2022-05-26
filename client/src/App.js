@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import shortid from 'shortid'
-import Page from './Components/Page'
 import './App.css';
+
+import Header from './Components/Header'
+import Footer from './Components/Footer'
+import Body from './Components/Body'
 
 
 const App = () => {
@@ -69,11 +72,16 @@ const App = () => {
 
   return (
     <>
+    <div className="Homepage">
+      <Header />
+      <Body />
+      <Footer />
+    </div>
+
     <div className="App">
       <div className="Info">
 
         <div>
-          <img className="logo" alt="logo" src={require("./assets/logo.png")} />
 
             <ul>
               <li>Track number of clicks</li>
@@ -181,7 +189,6 @@ const App = () => {
       </div>
       
     </div>
-    <Page />
     </>
   );
 }
