@@ -1,0 +1,14 @@
+.Page {
+    height: 100vh;
+    background: #DB4653;
+    background: hsla(355, 67%, 57%, 1);
+    background: hsla(355, 67%, 57%, 1);
+
+    background: linear-gradient(to right, hsla(355, 67%, 57%, 1) 0%, hsla(356, 100%, 85%, 1) 100%);
+    
+    background: -moz-linear-gradient(to right, hsla(355, 67%, 57%, 1) 0%, hsla(356, 100%, 85%, 1) 100%);
+    
+    background: -webkit-linear-gradient(to right, hsla(355, 67%, 57%, 1) 0%, hsla(356, 100%, 85%, 1) 100%);
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#DB4653", endColorstr="#FFB1B6", GradientType=1 );
+}

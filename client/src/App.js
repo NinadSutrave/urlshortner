@@ -1,41 +1,74 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import shortid from 'shortid'
+import Page from './Components/Page'
 import './App.css';
+
 
 const App = () => {
 
-  const [clicks, setClicks] = useState();
-  const [shortUrl, setShortUrl] = useState();
-  const [longInput, setLongInput] = useState();
-  const [shortInput, setShortInput] = useState();
+  const [clicks, setClicks] = useState()
+  const [code, setCode] = useState()
+  const [longUrl, setLongUrl] = useState()
+  const [shortUrl, setShortUrl] = useState()
+  
+
+  const [availibility, setAvailibility] = useState("Available")
 
   const handleShorten = (e) => {
-    e.preventDefault()    
+    e.preventDefault()
+    const getCode = shortid.generate()
+    setCode(getCode)
+  }
 
-    axios.post('http://localhost:5000/shortenUrl', {"longUrl": longInput})
-      .then(res => setShortUrl(res.data.shortUrl))
-      .catch(err => console.log(err.response.data.message))
-      .catch(err => console.log(err.message))
+  const handleSave = async (e) => {
+
+    axios.post('/create', {"code": code, "longUrl": longUrl})
+    .then(res => setShortUrl(res.data.shortUrl))
+    .catch(err => console.log(err.response.data.message))
+    .catch(err => console.log(err.message))
+
+    const shortUrl = process.env.REACT_APP_BASE_URL + code
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(shortUrl);
+    } 
+    else {
+      return document.execCommand('copy', true, shortUrl);
+    }
+
   }
 
   const handleClick = (e) => {
     e.preventDefault()
-    console.log(shortInput)
-    axios.post('http://localhost:5000/clicks', {"shortUrl": shortInput})
+    console.log(shortUrl)
+    axios.post('/clicks', {"shortUrl": shortUrl})
       .then(res => setClicks(res.data.clicks))
       .catch(err => console.log(err.response.data.message))
       .catch(err => console.log(err.message))
   }
 
+  const updateCode = (e) => {
+    setCode(e.target.value)
+
+    console.log(e.target.value)
+
+    axios.get('/search', { params: {
+      searchItem: e.target.value
+    }})
+    .then(res => setAvailibility(res.data.message))
+    .catch(err => console.warn(err));
+  }
+
   const updateLongInput = (e) => {
-    setLongInput(e.target.value)
+    setLongUrl(e.target.value)
   }
 
   const updateShortInput = (e) => {
-    setShortInput(e.target.value)
+    setShortUrl(e.target.value)
   }
 
   return (
+    <>
     <div className="App">
       <div className="Info">
 
@@ -76,20 +109,45 @@ const App = () => {
         </form>
         </div>
 
+        <div>
+          Want a custom code? Edit below to check if it's available
+        </div>
+
         <div className="parameter">
         <h1> 
           Teetsy Url: 
         </h1>
+        <h4 className="shortUrl">
+          {process.env.REACT_APP_BASE_URL}
+        </h4>
         <input
-          className="shortUrl"
+          className="urlCode"
           type="text"
-          id="shortUrl"
+          id="urlCode"
           autoComplete="off"
-          value={shortUrl}
+          value={code}
+          onChange={updateCode}
         />
-        <button className="clipboard">
-          <img className="copy" alt="copy-icon" src={require("./assets/copy.png")} />
-        </button>
+
+        <div 
+          className="indicators"
+          style= {code?{display:'initial'}:{display:'none'}}
+        >
+        {(availibility == "Available")?<button className="icon" id="available" />:<button className="icon" id="reserved" />}
+        </div> 
+        </div>
+
+        <div>
+          (Use alphanumeric or '-, '_' characters only)
+        </div>
+
+        <div className="middle">
+          <input 
+            className="save" 
+            type="submit" 
+            value="Save and Copy"
+            onClick={handleSave}
+          />
         </div>
 
         <div className="lower">
@@ -121,7 +179,10 @@ const App = () => {
 
 
       </div>
+      
     </div>
+    <Page />
+    </>
   );
 }
 

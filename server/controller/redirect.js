@@ -11,7 +11,6 @@ const redirect = async (req,res) => {
 
     try {
         const url = await Url.findOne({ code })
-        console.log(code)
 
         if(url.longUrl) {
 
