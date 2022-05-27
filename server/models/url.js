@@ -19,6 +19,11 @@ const UrlSchema = new Schema({
         type: Number,
         required: true,
         default: 0
+    },
+    analytics: {
+        type: Array,
+        required: true,
+        default: []
     }
 })
 

@@ -19,6 +19,8 @@ const RightSection = () => {
     const [err1Vis, setErr1Vis] = useState()
     const [clicksVis, setClicksVis] = useState()
     const [err2Vis, setErr2Vis] = useState()
+    const [err3Vis, setErr3Vis] = useState()
+    const [errMessage, setErrMessage] = useState()
 
     const updateLongUrl = (e) => {
         setLongUrl(e.target.value)
@@ -55,6 +57,9 @@ const RightSection = () => {
 
     const handleSave = async (e) => {
 
+        if(availibility == "Reserved")
+            return
+
         axios.post('/create', {"code": code, "longUrl": longUrl})
         .then(res => setShortUrl(res.data.shortUrl))
         .catch(err => console.log(err.response.data.message))
@@ -72,14 +77,35 @@ const RightSection = () => {
 
       const updateCode = (e) => {
         setCode(e.target.value)
+
+        if(e.target.value == "") {
+            return setAvailibility("Reserved")
+            setErr3Vis("")
+        }
     
-        console.log(e.target.value)
+        const searchItem = e.target.value
     
         axios.get('/search', { params: {
-          searchItem: e.target.value
+          searchItem
         }})
-        .then(res => setAvailibility(res.data.message))
+        .then(res => {
+            console.log(res.data.message)
+            setAvailibility(res.data.message)
+            var isValidCode = /^[a-zA-Z0-9-_]+$/;
+            if (searchItem.search(isValidCode) === -1) { 
+                setErrMessage("Note: The code must include alphanumerals, hyphen or underscore")
+                setErr3Vis("show")
+            }
+            else if(res.data.message == "Reserved") {
+                setErrMessage("This code is already reserved")
+                setErr3Vis("show")
+            }
+            else {
+                setErr3Vis("")
+            }
+        })
         .catch(err => console.warn(err));
+
       }
 
       const getClicks = (e) => {
@@ -142,7 +168,7 @@ const RightSection = () => {
         </div>
 
         <h5 className={err1Vis}>
-            Please check for any typing errors and enter a valid URL!
+            Invalid URL. Ensure you enter the full correct URL (including 'https:' ,etc)!
         </h5>
 
         <div className={"result "+shortVis}>
@@ -167,8 +193,12 @@ const RightSection = () => {
                 onClick={handleSave}
             >
                 Save and Copy
-            </button>
-        </div>        
+            </button> 
+        </div>   
+        <h5 className={"error3 "+err3Vis}>
+            {errMessage}
+        </h5>    
+        
 
         <h3 className="description">
             Track the number of clicks for your Teetsy URL

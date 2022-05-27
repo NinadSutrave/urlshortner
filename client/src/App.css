@@ -13,14 +13,3 @@
   font-family: 'Sunflower', sans-serif;
   color: var(--dark-blue);
 }
-
-.App {
-  height: 100vh;
-}
-
-.Homepage {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}

@@ -72,11 +72,6 @@
     background: linear-gradient(180deg, #147587 0%, #1FB2CD 100%);
 }
 
-.save-button {
-    
-    
-}
-
 #save {
     align-self: center;
     width: 35%;
@@ -105,6 +100,15 @@ h5 {
     font-style: italic;
     color: slategray;
     visibility: hidden;
+}
+
+.error3 {
+    margin-top: -2rem;
+    margin-bottom: 2rem ;
+}
+
+.show {
+    visibility: visible;
 }
 
 .invalid-long {
@@ -141,6 +145,7 @@ h5 {
     width: 60%;
     text-align: center;
     display: flex;
+    flex-direction: column; 
     justify-content: center;
     margin-bottom: 1rem;
     visibility: hidden;
@@ -160,10 +165,6 @@ h5 {
 
 @media screen and (max-width: 880px) {
 
-    body {
-        background: lightcoral;
-    }
-
     .input {
         width: 80%;
     }
@@ -175,13 +176,38 @@ h5 {
     #save, #track-clicks {
         width: 50%;
     }
-    
-}
-
-@media screen and (max-width: 880px) {
-
     .save-button {
         width: 80%;
     }
+    
+}
+
+@media screen and (max-width: 730px) {
+    
+    .description {
+        margin-top: 1rem;
+    }
 
 }
+
+@media screen and (max-width: 480px) {
+
+    .RightSection {
+        margin-left: 0;
+    }
+
+    .description {
+        font-size: 1rem;    
+    }
+
+}
+
+@media screen and (max-width: 330px) {
+
+    .description {
+        font-size: 1rem;    
+    }
+
+}
+
+

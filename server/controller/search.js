@@ -8,6 +8,11 @@ const searchCode = async (req,res) => {
 
     const searchItem = req.query.searchItem
 
+    var isValidCode = /^[a-zA-Z0-9-_]+$/;
+    if (searchItem.search(isValidCode) === -1) { 
+        return res.json({"message": "Reserved"})
+    }
+
     try {
 
         console.log('yo')
