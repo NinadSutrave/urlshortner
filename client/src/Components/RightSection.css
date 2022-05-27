@@ -89,12 +89,6 @@
     background: linear-gradient(180deg, #147587 0%, #1FB2CD 100%);
 }
 
-#analytics {
-    align-self: center;
-    width: 25%;
-    border-radius: 0;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-}
 
 h5 {
     font-style: italic;
@@ -103,8 +97,7 @@ h5 {
 }
 
 .error3 {
-    margin-top: -2rem;
-    margin-bottom: 2rem ;
+    margin-bottom: 2rem;
 }
 
 .show {

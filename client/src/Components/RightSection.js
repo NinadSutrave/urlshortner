@@ -236,12 +236,6 @@ const RightSection = () => {
             <h4 className="clicks">
                 Number of Clicks: {clicks}
             </h4>
-            <button 
-                className="submit1" 
-                id="analytics"
-            >
-                Get Analytics
-            </button>
         </div>  
 
         

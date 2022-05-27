@@ -12,7 +12,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Homepage/>} />
           <Route path="*" element={<Error404/>} />
-        </Routes>
+        </Routes>      
     </BrowserRouter>
     
   );
